@@ -1,8 +1,29 @@
 {
   "name": "resume-generator",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A modern, responsive web application for generating professional resumes from JSON or YAML data",
+  "main": "index.html",
   "type": "module",
+  "author": "Resume Generator Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheUnknown550/Resume-Generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TheUnknown550/Resume-Generator/issues"
+  },
+  "homepage": "https://github.com/TheUnknown550/Resume-Generator#readme",
+  "keywords": [
+    "resume",
+    "generator",
+    "react",
+    "typescript",
+    "pdf",
+    "yaml",
+    "json",
+    "tailwindcss"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
