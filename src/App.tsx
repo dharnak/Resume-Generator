@@ -4,6 +4,7 @@ import { useResumeStore } from './store';
 import { parseResumeData, validateResumeData } from './utils';
 import ResumeRenderer from './components/ResumeRenderer';
 import html2pdf from 'html2pdf.js';
+import exampleYaml from '../example-resume.yaml?raw';
 
 function App() {
   const { resumeData, template, theme, setResumeData, setTemplate, toggleTheme } = useResumeStore();
@@ -38,6 +39,11 @@ function App() {
       setInputText(content);
     };
     reader.readAsText(file);
+  };
+
+  const loadExample = () => {
+    setInputText(exampleYaml);
+    setInputFormat('yaml');
   };
 
   const exportToPDF = () => {
@@ -99,6 +105,16 @@ function App() {
                 onChange={handleFileUpload}
                 className={`w-full p-2 border rounded ${theme === 'dark' ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300'}`}
               />
+            </div>
+
+            {/* Load Example Button */}
+            <div className="mb-4">
+              <button
+                onClick={loadExample}
+                className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+              >
+                Load Example YAML
+              </button>
             </div>
 
             {/* Submit Button */}

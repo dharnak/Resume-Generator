@@ -52,6 +52,7 @@ A modern, responsive web application for generating professional resumes from JS
 1. **Input Resume Data**:
    - Paste JSON or YAML resume data in the left panel
    - Or upload a `.json` or `.yaml` file
+   - Or click "Load Example YAML" to load sample data for testing
    - Use the provided example files: `example-resume.json` or `example-resume.yaml`
 
 2. **Select Template**:
