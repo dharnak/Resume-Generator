@@ -1,73 +1,153 @@
-# React + TypeScript + Vite
+# Resume Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive web application for generating professional resumes from JSON or YAML data. Built with React, TypeScript, Vite, and TailwindCSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Multiple Input Formats**: Support for JSON and YAML resume data
+- **File Upload**: Upload resume files directly
+- **Multiple Templates**: Choose from Classic, Modern, and Minimalist designs
+- **Dark/Light Mode**: Toggle between themes
+- **PDF Export**: Export resumes as PDF files
+- **Responsive Design**: Works on desktop and mobile devices
+- **Client-side Only**: No server required, all processing done in the browser
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React + TypeScript + Vite
+- **Styling**: TailwindCSS
+- **State Management**: Zustand
+- **Parsing**: `js-yaml` for YAML, built-in JSON parsing
+- **PDF Export**: `html2pdf.js`
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v16 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd resume-generator
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Usage
+
+1. **Input Resume Data**:
+   - Paste JSON or YAML resume data in the left panel
+   - Or upload a `.json` or `.yaml` file
+   - Use the provided example files: `example-resume.json` or `example-resume.yaml`
+
+2. **Select Template**:
+   - Choose from Modern, Classic, or Minimalist templates
+
+3. **Customize**:
+   - Toggle between light and dark modes
+   - Preview your resume in real-time
+
+4. **Export**:
+   - Click "Export PDF" to download your resume as a PDF
+
+## Resume Data Format
+
+The resume data should follow this structure:
+
+```json
+{
+  "personalInfo": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "phone": "Your Phone",
+    "address": "Your Address",
+    "linkedin": "linkedin.com/in/yourprofile",
+    "github": "github.com/yourusername",
+    "website": "yourwebsite.com"
   },
-])
+  "summary": "Professional summary...",
+  "experience": [
+    {
+      "company": "Company Name",
+      "position": "Job Title",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "description": ["Responsibility 1", "Responsibility 2"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University Name",
+      "degree": "Degree Name",
+      "startDate": "Start Year",
+      "endDate": "End Year",
+      "gpa": "3.8"
+    }
+  ],
+  "skills": ["Skill 1", "Skill 2", "Skill 3"],
+  "projects": [
+    {
+      "name": "Project Name",
+      "description": "Project description",
+      "technologies": ["Tech 1", "Tech 2"],
+      "link": "project-link.com"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certification Name",
+      "issuer": "Issuing Organization",
+      "date": "2023"
+    }
+  ]
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── components/
+│   ├── ClassicResume.tsx
+│   ├── ModernResume.tsx
+│   ├── MinimalistResume.tsx
+│   └── ResumeRenderer.tsx
+├── store.ts          # Zustand state management
+├── types.ts          # TypeScript type definitions
+├── utils.ts          # Utility functions for parsing
+└── App.tsx           # Main application component
+```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.

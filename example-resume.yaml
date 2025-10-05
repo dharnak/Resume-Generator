@@ -1,0 +1,69 @@
+personalInfo:
+  name: "Jane Smith"
+  email: "jane.smith@example.com"
+  phone: "(555) 987-6543"
+  address: "456 Oak Ave, Somewhere, USA"
+  linkedin: "linkedin.com/in/janesmith"
+  github: "github.com/janesmith"
+  website: "janesmith.dev"
+
+summary: "Creative UI/UX designer with 4+ years of experience crafting intuitive user interfaces and conducting user research. Skilled in modern design tools and collaborative development processes."
+
+experience:
+  - company: "Design Studio"
+    position: "Senior UI/UX Designer"
+    startDate: "Mar 2021"
+    endDate: "Present"
+    description:
+      - "Led design for mobile app with 500K+ downloads"
+      - "Conducted user research and usability testing"
+      - "Created design systems and component libraries"
+      - "Collaborated with developers on implementation"
+
+  - company: "Digital Agency"
+    position: "UI Designer"
+    startDate: "Jan 2018"
+    endDate: "Feb 2021"
+    description:
+      - "Designed responsive websites and web applications"
+      - "Created wireframes, prototypes, and mockups"
+      - "Worked with marketing teams on branding projects"
+      - "Maintained design consistency across platforms"
+
+education:
+  - institution: "Art & Design University"
+    degree: "Bachelor of Fine Arts in Graphic Design"
+    startDate: "2014"
+    endDate: "2018"
+    gpa: "3.9"
+
+skills:
+  - "Figma"
+  - "Adobe Creative Suite"
+  - "Sketch"
+  - "InVision"
+  - "HTML/CSS"
+  - "JavaScript"
+  - "User Research"
+  - "Prototyping"
+  - "Design Systems"
+
+projects:
+  - name: "Mobile Banking App"
+    description: "Redesigned mobile banking interface improving user satisfaction by 35%"
+    technologies: ["Figma", "Principle", "UserTesting"]
+    link: "https://dribbble.com/janesmith/banking-app"
+
+  - name: "E-learning Platform"
+    description: "Designed intuitive learning management system for corporate training"
+    technologies: ["Sketch", "InVision", "HTML/CSS"]
+    link: "https://dribbble.com/janesmith/elearning"
+
+certifications:
+  - name: "Certified Usability Analyst"
+    issuer: "Human Factors International"
+    date: "2023"
+
+  - name: "Google UX Design Certificate"
+    issuer: "Google"
+    date: "2022"
