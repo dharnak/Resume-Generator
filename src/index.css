@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Override problematic Tailwind colors for PDF export compatibility */
+@media print, (prefers-reduced-motion: reduce) {
+  .bg-blue-500 { background-color: #3b82f6 !important; }
+  .bg-blue-600 { background-color: #2563eb !important; }
+  .bg-blue-700 { background-color: #1d4ed8 !important; }
+  .bg-green-600 { background-color: #16a34a !important; }
+  .bg-green-700 { background-color: #15803d !important; }
+  .bg-gray-100 { background-color: #f3f4f6 !important; }
+  .bg-gray-400 { background-color: #9ca3af !important; }
+  .bg-gray-700 { background-color: #374151 !important; }
+  .bg-gray-800 { background-color: #1f2937 !important; }
+  .bg-gray-900 { background-color: #111827 !important; }
+  .bg-white { background-color: #ffffff !important; }
+
+  .text-blue-600 { color: #2563eb !important; }
+  .text-blue-800 { color: #1e40af !important; }
+  .text-gray-500 { color: #6b7280 !important; }
+  .text-gray-600 { color: #4b5563 !important; }
+  .text-gray-700 { color: #374151 !important; }
+  .text-gray-800 { color: #1f2937 !important; }
+  .text-gray-900 { color: #111827 !important; }
+  .text-white { color: #ffffff !important; }
+
+  .border-blue-500 { border-color: #3b82f6 !important; }
+  .border-gray-200 { border-color: #e5e7eb !important; }
+  .border-gray-300 { border-color: #d1d5db !important; }
+  .border-gray-600 { border-color: #4b5563 !important; }
+}

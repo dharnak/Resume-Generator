@@ -11,6 +11,7 @@ function App() {
   const [inputText, setInputText] = useState('');
   const [inputFormat, setInputFormat] = useState<'json' | 'yaml'>('json');
   const [error, setError] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleTextSubmit = () => {
@@ -46,19 +47,104 @@ function App() {
     setInputFormat('yaml');
   };
 
-  const exportToPDF = () => {
+  const exportToPDF = async () => {
     const element = document.getElementById('resume-content');
-    if (!element) return;
+    if (!element) {
+      alert('Resume content not found. Please generate a resume first.');
+      return;
+    }
 
-    const opt = {
-      margin: 1,
-      filename: `${resumeData?.personalInfo.name || 'resume'}.pdf`,
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' as const }
-    };
+    setIsExporting(true);
+    try {
+      // Clone the element to avoid modifying the original
+      const clonedElement = element.cloneNode(true) as HTMLElement;
 
-    html2pdf().set(opt).from(element).save();
+      // Remove any problematic elements
+      const problematicElements = clonedElement.querySelectorAll('button, input, textarea, select');
+      problematicElements.forEach(el => el.remove());
+
+      // Force inline styles to override Tailwind's oklch colors
+      const applyInlineStyles = (element: HTMLElement) => {
+        const computedStyle = window.getComputedStyle(element);
+
+        // Override background color if it's using oklch
+        if (computedStyle.backgroundColor && computedStyle.backgroundColor.includes('oklch')) {
+          element.style.backgroundColor = '#ffffff'; // Default to white
+        }
+
+        // Override text color if it's using oklch
+        if (computedStyle.color && computedStyle.color.includes('oklch')) {
+          element.style.color = '#000000'; // Default to black
+        }
+
+        // Override border color if it's using oklch
+        if (computedStyle.borderColor && computedStyle.borderColor.includes('oklch')) {
+          element.style.borderColor = '#000000'; // Default to black
+        }
+
+        // Recursively apply to children
+        Array.from(element.children).forEach(child => applyInlineStyles(child as HTMLElement));
+      };
+
+      applyInlineStyles(clonedElement);
+
+      // Additional CSS overrides as fallback
+      const style = document.createElement('style');
+      style.textContent = `
+        * { background-color: transparent !important; }
+        .bg-blue-500 { background-color: #3b82f6 !important; }
+        .bg-blue-600 { background-color: #2563eb !important; }
+        .bg-blue-700 { background-color: #1d4ed8 !important; }
+        .bg-green-600 { background-color: #16a34a !important; }
+        .bg-green-700 { background-color: #15803d !important; }
+        .bg-gray-100 { background-color: #f3f4f6 !important; }
+        .bg-gray-400 { background-color: #9ca3af !important; }
+        .bg-gray-700 { background-color: #374151 !important; }
+        .bg-gray-800 { background-color: #1f2937 !important; }
+        .bg-gray-900 { background-color: #111827 !important; }
+        .bg-white { background-color: #ffffff !important; }
+        .text-blue-600 { color: #2563eb !important; }
+        .text-blue-800 { color: #1e40af !important; }
+        .text-gray-500 { color: #6b7280 !important; }
+        .text-gray-600 { color: #4b5563 !important; }
+        .text-gray-700 { color: #374151 !important; }
+        .text-gray-800 { color: #1f2937 !important; }
+        .text-gray-900 { color: #111827 !important; }
+        .text-white { color: #ffffff !important; }
+        .border-blue-500 { border-color: #3b82f6 !important; }
+        .border-gray-200 { border-color: #e5e7eb !important; }
+        .border-gray-300 { border-color: #d1d5db !important; }
+        .border-gray-600 { border-color: #4b5563 !important; }
+      `;
+      clonedElement.appendChild(style);
+
+      const opt = {
+        margin: [20, 20, 20, 20] as [number, number, number, number],
+        filename: `${resumeData?.personalInfo.name?.replace(/\s+/g, '_') || 'resume'}.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.95 },
+        html2canvas: {
+          scale: 1.5,
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#ffffff'
+        },
+        jsPDF: {
+          unit: 'pt',
+          format: 'a4',
+          orientation: 'portrait' as const,
+          compress: true,
+          putOnlyUsedFonts: true
+        }
+      };
+
+      await html2pdf().set(opt).from(clonedElement).save();
+      alert('PDF exported successfully!');
+    } catch (error) {
+      console.error('PDF export error:', error);
+      alert(`Failed to export PDF: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   return (
@@ -162,9 +248,14 @@ function App() {
                 {resumeData && (
                   <button
                     onClick={exportToPDF}
-                    className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+                    disabled={isExporting}
+                    className={`py-2 px-4 rounded transition-colors ${
+                      isExporting
+                        ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                        : 'bg-green-600 text-white hover:bg-green-700'
+                    }`}
                   >
-                    Export PDF
+                    {isExporting ? 'Exporting...' : 'Export PDF'}
                   </button>
                 )}
               </div>

@@ -8,7 +8,7 @@ A modern, responsive web application for generating professional resumes from JS
 - **File Upload**: Upload resume files directly
 - **Multiple Templates**: Choose from Classic, Modern, and Minimalist designs
 - **Dark/Light Mode**: Toggle between themes
-- **PDF Export**: Export resumes as PDF files
+- **PDF Export**: Export resumes as high-quality PDF files with proper formatting and professional layout
 - **Responsive Design**: Works on desktop and mobile devices
 - **Client-side Only**: No server required, all processing done in the browser
 
@@ -63,7 +63,8 @@ A modern, responsive web application for generating professional resumes from JS
    - Preview your resume in real-time
 
 4. **Export**:
-   - Click "Export PDF" to download your resume as a PDF
+   - Click "Export PDF" to download your resume as a high-quality PDF file
+   - The PDF will be automatically named using your name and saved to your downloads folder
 
 ## Resume Data Format
 
